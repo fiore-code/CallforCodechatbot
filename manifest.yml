@@ -1,10 +1,6 @@
-# App Manifest
 applications:
-- name: CallForCodeUIChatbot
-  buildpacks: 
-   - https://github.com/cloudfoundry/staticfile-buildpack
-  path: dist/  
-  memory : 256M
-  command: "$HOME/boot.sh"
-  routes:
-    - route: callforcodechatbotui.eu-gb.appdomain.cloud
+  name: CallForCodeChatbotUI
+  buildpack: staticfile_buildpack
+  host: callforcodechatbotui
+  memory: 32M
+  path: dist
