@@ -7,4 +7,4 @@ applications:
   memory : 256M
   command: "$HOME/boot.sh"
   routes:
-    - route: CallForCodeChatbotUI.eu-gb.cf.appdomain.cloud
+    - route: callforcodechatbotui.eu-gb.cf.appdomain.cloud/
