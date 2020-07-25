@@ -7,4 +7,4 @@ applications:
   memory : 256M
   command: "$HOME/boot.sh"
   routes:
-    - route: Myappangularapp.eu-gb.appdomain.cloud
+    - route: CallForCodeChatbotUI.eu-gb.cf.appdomain.cloud
