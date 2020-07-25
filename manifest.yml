@@ -1,6 +1,6 @@
 # App Manifest
 applications:
-- name: Covid19Tracker
+- name: CallForCodeUiChatbot
   buildpacks: 
    - https://github.com/cloudfoundry/staticfile-buildpack
   path: dist/  
