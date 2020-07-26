@@ -276,7 +276,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points1', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag1'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag1'
       });
       map.addLayer({
         'id': 'points1',
@@ -315,7 +315,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points2', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag2'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag2'
       });
       map.addLayer({
         'id': 'points2',
@@ -336,7 +336,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points3', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag3'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag3'
       });
       map.addLayer({
         'id': 'points3',
@@ -353,7 +353,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points4', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag4'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag4'
       });
       map.addLayer({
         'id': 'points4',
@@ -371,7 +371,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points5', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag5'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag5'
       });
       map.addLayer({
         'id': 'points5',
@@ -388,7 +388,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points6', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag6'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag6'
       });
       map.addLayer({
         'id': 'points6',
@@ -406,7 +406,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points7', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag7'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag7'
       });
       map.addLayer({
         'id': 'points7',
@@ -423,7 +423,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points8', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag8'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag8'
       });
       map.addLayer({
         'id': 'points8',
@@ -440,7 +440,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points9', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag9'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag9'
       });
       map.addLayer({
         'id': 'points9',
@@ -457,7 +457,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points10', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag10'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag10'
       });
       map.addLayer({
         'id': 'points10',
@@ -474,7 +474,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points11', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag11'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag11'
       });
       map.addLayer({
         'id': 'points11',
@@ -491,7 +491,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points12', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag12'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag12'
       });
       map.addLayer({
         'id': 'points12',
@@ -511,7 +511,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points13', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag13'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag13'
       });
       map.addLayer({
         'id': 'points13',
@@ -530,7 +530,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points14', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag14'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag14'
       });
       map.addLayer({
         'id': 'points14',
@@ -549,7 +549,7 @@ export class AppComponent implements OnInit {
       //Mag 1
       map.addSource('points15', {
         'type': 'geojson',
-        'data': 'http://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag15'
+        'data': 'https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/mag15'
       });
       map.addLayer({
         'id': 'points15',

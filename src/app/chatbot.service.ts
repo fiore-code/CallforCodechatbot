@@ -11,7 +11,7 @@ export class ChatbotService {
   }
 
   getSessionId(): Observable<Object> {
-    return this.http.get('http://13.127.19.108:3000/assistant/api/session');
+    return this.http.get('https://api.acroinfer.in/assistant/api/session');
   }
 
   getWorldWideDetails(): Observable<Object> {
@@ -23,7 +23,7 @@ export class ChatbotService {
   }
 
   getMessage(data): Observable<Object> {
-    return this.http.post('http://13.127.19.108:3000/assistant/api/message', {
+    return this.http.post('https://api.acroinfer.in/assistant/api/message', {
       "session_id": `${data}`,
       "input": {
         "message_type": "text",
@@ -32,7 +32,7 @@ export class ChatbotService {
     });
   }
   getMessageReply(data, text): Observable<Object> {
-    return this.http.post('http://13.127.19.108:3000/assistant/api/message', {
+    return this.http.post('https://api.acroinfer.in/assistant/api/message', {
       "session_id": `${data}`,
       "input": {
         "message_type": "text",
@@ -44,7 +44,7 @@ export class ChatbotService {
   getImageUrl(file): Observable<Object> {
     const uploadData = new FormData();
     uploadData.append("MoreImage", file);
-    return this.http.post('http://13.127.19.108:8080/feed/upload', uploadData);
+    return this.http.post('https://file.acroinfer.in/feed/upload', uploadData);
   }
 
   getMessageConfidence(imageUrl) {
@@ -58,19 +58,19 @@ export class ChatbotService {
   }
 
   getDailyCount() {
-    return this.http.get('http://35.154.58.59/api/daily_total_updates');
+    return this.http.get('https://map.acroinfer.in/api/daily_total_updates');
   }
 
   getAgeCategoryCount(): Observable<Object> {
-    return this.http.get('http://35.154.58.59/api/age_count_data');
+    return this.http.get('https://map.acroinfer.in/api/age_count_data');
   }
 
   getWeeklyData(): Observable<Object> {
-    return this.http.get('http://35.154.58.59/api/weekly_count');
+    return this.http.get('https://map.acroinfer.in/api/weekly_count');
   }
 
   getPdfUrl(userObject): Observable<Object> {
-    return this.http.post('http://ec2-13-235-31-214.ap-south-1.compute.amazonaws.com/createuser', userObject);
+    return this.http.post('https://acroinfer.in/createuser', userObject);
   }
 
   async getToneData(toneObj) {
@@ -79,14 +79,14 @@ export class ChatbotService {
 
 
   sendEmailToUser(userObj) {
-    return this.http.post("http://ec2-13-235-31-214.ap-south-1.compute.amazonaws.com/getReportByEmail", userObj);
+    return this.http.post("https://acroinfer.in/getReportByEmail", userObj);
   }
 
   getStateWiseData(): Observable<Object> {
-    return this.http.get('http://35.154.58.59/api/daily_state_count');
+    return this.http.get('https://map.acroinfer.in/api/daily_state_count');
   }
 
   getDistrictData(): Observable<Object> {
-    return this.http.get('http://35.154.58.59/api/state_data');
+    return this.http.get('https://map.acroinfer.in/api/state_data');
   }
 }
