@@ -26,7 +26,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": ["https://platform.twitter.com/widgets.js"]
           },
           "configurations": {
             "production": {

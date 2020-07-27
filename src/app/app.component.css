@@ -29,11 +29,11 @@
   
   
   .msger {
-    display: none;
+    display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
     width: 100%;
-    max-width: 400px;
+    max-width: 450px;
     margin: 25px 10px;
     height: 90vh;
     border: 2px solid #ddd;
@@ -87,8 +87,8 @@
     border-radius: 50%;
   }
   .msg-bubble {
-    max-width: 450px;
-    padding: 10px;
+    max-width: 370px;
+    padding: 15px;
     border-radius: 15px;
     background: #ececec;
   }
@@ -160,7 +160,8 @@
 select{
   color: rgb(255, 255, 255);
   background: transparent;
-  border: 1px solid;
+  border: none;
+  width: 85%;
   padding: 10px 0px;
 }
 option{

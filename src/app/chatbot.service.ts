@@ -43,7 +43,7 @@ export class ChatbotService {
 
   getImageUrl(file): Observable<Object> {
     const uploadData = new FormData();
-    uploadData.append("MoreImage", file);
+    uploadData.append("StorageImage", file);
     return this.http.post('https://file.acroinfer.in/feed/upload', uploadData);
   }
 

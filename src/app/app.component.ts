@@ -973,6 +973,9 @@ export class AppComponent implements OnInit {
     this.checkBoxQuestionArray.push({ "🤕 Are you disease-free or you are suffering from some? If yes, then choose 😟": "Cardiovascular,Respiratory,Cancer,Diabetes,Blood Pressure,Allergies,None" });
     this.checkBoxQuestionArray.push({ "🤕Symptoms of the Coronavirus(COVID-19) can look similar to the flu and other ailments. Coming to current situations, are you facing from any of these recently?🤕": "Fever,Shortness of breath,Cough,None" });
     this.checkBoxQuestionArray.push({ "A little more info is what I need to assist. 🙂 Does any of these troubles you?": "Fatigue,Muscle Pain,Chills,Headache,Diarrhea,Nausea,Loss of smell/taste,None" });
+    this.checkBoxQuestionArray.push({ "How did you came to know that you are a COVID +ve? Did you have any of these?": "Fever,Shortness of breath,Cough,None" });
+    this.checkBoxQuestionArray.push({ "If you had any of these symptoms kindly select:": "Fatigue,Muscle Pain,Chills,Headache,Diarrhea,Nausea,Loss of smell/taste,None" });
+
     console.log(this.checkBoxQuestionArray);
     console.log(this.countries);
     this.chatBotService.getWorldWideDetails().subscribe(data => {
@@ -1064,7 +1067,7 @@ export class AppComponent implements OnInit {
     }
     let time = hours + ":" + minutes;
     let labelListInitSelectionUser: String[] = [];
-    if (element.value.input.text == "analysis") {
+    if (element.value.input.text == "Please upload your Chest X-Ray. With the little knowledge that I have, I want to assist you in analyzing your report (Upload format: .jpg, .jpeg, .png)") {
       this.uploadBtnEnabled = false;
     }
     // else if(element.value.input.text="")
@@ -1126,7 +1129,9 @@ export class AppComponent implements OnInit {
         console.log(this.messages);
       }
       else {
+        console.log("value of message before entering the check end message", this.replyData);
         const yesEndMessage = this.checkEndMessage(this.replyData);
+        console.log("value of end message", yesEndMessage);
         if (yesEndMessage) {
           this.createUserObject(this.messages);
           this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: [], checkbox: false, image: false, endMessage: true });
@@ -1189,7 +1194,6 @@ export class AppComponent implements OnInit {
           console.log("thik age");
           this.labelListInitSelection = [];
           let labelListInitSelectionUser: String[] = [];
-
           this.messages.push({ botType: false, time, user: "User", message: text, labelList: labelListInitSelectionUser, checkbox: false, image: false, endMessage: false });
           console.log("this is the messages after user");
           console.log(this.messages);
@@ -1198,6 +1202,7 @@ export class AppComponent implements OnInit {
             this.replyData = this.messages1.result.output.generic[0]["text"];
             this.replyData1 = this.messages1.result.output.generic[1];
             console.log(this.replyData1);
+
 
 
             if (this.replyData1 == undefined) {
@@ -1281,9 +1286,12 @@ export class AppComponent implements OnInit {
           this.replyData = this.messages1.result.output.generic[0]["text"];
           this.replyData1 = this.messages1.result.output.generic[1];
           console.log(this.replyData1);
-          if (this.replyData.includes("How are you now?")) {
+          if (this.replyData.includes("How are you now?") || this.replyData.includes("Can you share with me why are you feeling so?") || this.replyData.includes("So how was the staff") || this.replyData.includes("How did the local authorities helped you")) {
             this.isPostCovidEnabled = true;
             console.log("post covid dhukheche");
+          }
+          else if (this.replyData == "Please upload your Chest X-Ray. With the little knowledge that I have, I want to assist you in analyzing your report (Upload format: .jpg, .jpeg, .png)") {
+            this.uploadBtnEnabled = false;
           }
           if (this.replyData1 == undefined) {
             this.labelListInitSelection = [];
@@ -1418,7 +1426,7 @@ export class AppComponent implements OnInit {
     }
     let time = hours + ":" + minutes;
 
-    if (this.messages[this.messages.length - 1]["message"] == "🤕Symptoms of the Coronavirus(COVID-19) can look similar to the flu and other ailments. Coming to current situations, are you facing from any of these recently?🤕") {
+    if (this.messages[this.messages.length - 1]["message"] == "🤕Symptoms of the Coronavirus(COVID-19) can look similar to the flu and other ailments. Coming to current situations, are you facing from any of these recently?🤕" || this.messages[this.messages.length - 1]["message"] == "How did you came to know that you are a COVID +ve? Did you have any of these?") {
       if (this.checkListSelection.indexOf("None") != -1) {
         console.log("dhuklo ekhane");
         let index = this.checkListSelection.indexOf("None");
@@ -1427,7 +1435,7 @@ export class AppComponent implements OnInit {
         console.log(this.checkListSelection);
       }
     }
-    else if (this.messages[this.messages.length - 1]["message"] == "A little more info is what I need to assist. 🙂 Does any of these troubles you?") {
+    else if (this.messages[this.messages.length - 1]["message"] == "A little more info is what I need to assist. 🙂 Does any of these troubles you?" || this.messages[this.messages.length - 1]["message"] == "If you had any of these symptoms kindly select:") {
       if (this.checkListSelection.indexOf("None") != -1) {
         console.log("dhuklo ekhaneo");
         let index = this.checkListSelection.indexOf("None");
@@ -1553,35 +1561,19 @@ export class AppComponent implements OnInit {
         let classData = this.imageResponse.class;
         let score = this.imageResponse.score;
         let category: any;
-        if (classData == "covid") {
-          if (score > 0 && score < 0.25) {
-            category = "Covid: category A";
-          }
-          else if (score > 0.25 && score < 0.50) {
-            category = "Covid: category B";
-          }
-          else if (score > 0.50 && score < 0.75) {
-            category = "Covid: category C";
-          }
-          else if (score > 0.75 && score < 1.0) {
-            category = "Covid: category D";
-          }
-          this.messages.push({ botType: true, time, user: "YODA", message: category, labelList: [], checkbox: false, image: false, endMessage: false });
-        }
-        else {
-          category = "Random Images";
-          this.messages.push({ botType: true, time, user: "YODA", message: category, labelList: [], checkbox: false, image: false, endMessage: false });
-        }
+        category = "Category: " + classData + ", Score: " + score;
+        this.messages.push({ botType: true, time, user: "YODA", message: category, labelList: [], checkbox: false, image: false, endMessage: false });
       });
     });
   }
 
   checkEndMessage(message: string): any {
-    if (this.message.indexOf('!') != -1) {
+    console.log("if excalamtion present", message.indexOf('!'));
+    if (message.indexOf('!') != -1) {
       if (this.endMessage.indexOf(message.split("!!")[0]) != -1) {
+        console.log("entered the split section");
         let index = this.endMessage.indexOf(message.split("!!")[0]);
         this.currentEndMessageUrl = this.endMessageUrls[index];
-        console.log("Shesh theke shuru.jibon shesh,bitan is not harami");
         return true;
       }
     }
@@ -1663,5 +1655,7 @@ export class AppComponent implements OnInit {
     //modelref.componentInstance.
   }
 
-  
+  ngAfterViewInit(): void {
+    (<any>window).twttr.widgets.load();
+  }
 }

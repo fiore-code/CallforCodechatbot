@@ -1,35 +1,6 @@
 <div class="topnav" style="font-family: 'Montserrat';">
-  <ng-template #content let-modal>
-    <div class="modal-header">
-      <h4 class="modal-title">District Data</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <div class=" table-responsive">
-        <table class=" table tablesorter" id="">
-          <thead class=" text-success">
-            <tr>
-              <th>District</th>
-              <th class=" text-center">Confirmed</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><i class=" tim-icons icon-compass-05"> </i> "Data"</td>
-              <td class=" text-center">data2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-    </div>
-  </ng-template>
   <a href="#">Covid 19-tracker</a>
-  <a href="http://localhost:5000" target="_blank">Doctor Patient Portal</a>
+  <a href="https://doctorpatientportal.eu-gb.cf.appdomain.cloud " target="_blank">Doctor Patient Portal</a>
   <a href="https://www.icmr.gov.in/" target="_blank" style="float: right;">ICMR</a>
   <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank" style="float: right;">World
     Health Organization</a>
@@ -38,29 +9,41 @@
 <div class="header">
   <div class="row">
     <div class="column">
-      <select name="country" #myCountry (change)="selectedCountry(myCountry.value)">
-        <option *ngFor="let country of countries" [value]="country">{{country}}</option>
-      </select>
+      <div class="card">
+        <select name="country" #myCountry (change)="selectedCountry(myCountry.value)">
+          <option *ngFor="let country of countries" [value]="country">{{country}}</option>
+        </select>
+      </div>
     </div>
     <div class="column">
-      <h2>{{countryStatics["confirmed"]}}</h2>
-      <p>Confirmed</p>
+      <div class="card">
+        <h2>{{countryStatics["confirmed"]}}</h2>
+        <p>Confirmed</p>
+      </div>
     </div>
     <div class="column">
-      <h2>{{countryStatics["recovered"]}}</h2>
-      <p>Recovered</p>
+      <div class="card">
+        <h2>{{countryStatics["recovered"]}}</h2>
+        <p>Recovered</p>
+      </div>
     </div>
     <div class="column">
-      <h2>{{countryStatics["deaths"]}}</h2>
-      <p>Deaths</p>
+      <div class="card">
+        <h2>{{countryStatics["deaths"]}}</h2>
+        <p>Deaths</p>
+      </div>
     </div>
     <div class="column">
-      <h2>{{countryStatics["recoveryRate"]}}</h2>
-      <p>Recovery rate</p>
+      <div class="card">
+        <h2>{{countryStatics["recoveryRate"]}}</h2>
+        <p>Recovery rate</p>
+      </div>
     </div>
     <div class="column">
-      <h2>{{countryStatics["deathRate"]}}</h2>
-      <p>Death rate</p>
+      <div class="card">
+        <h2>{{countryStatics["deathRate"]}}</h2>
+        <p>Death rate</p>
+      </div>
     </div>
   </div>
 </div>
@@ -142,15 +125,15 @@
 </div>
 <div class="row">
   <div class="col-sm-8">
-    <div  style="background-color: white;width: 100%;margin-left: 10px; border-radius: 10px;opacity: 0.5;">
-      <table class="table">
-        <thead class="thead-dark">
+    <div class="card" style="color: white;width: 95%;margin-left: 10px;margin-bottom: 100px;">
+      <table class="table ">
+        <thead>
           <tr>
-            <th scope="col">State/UT</th>
-            <th scope="col">Confirmed</th>
-            <th scope="col">Active</th>
-            <th scope="col">Recovered</th>
-            <th scope="col">Deceased</th>
+            <th style="text-align: center;">State/UT</th>
+            <th>Confirmed</th>
+            <th>Active</th>
+            <th>Recovered</th>
+            <th>Deceased</th>
           </tr>
 
         </thead>
@@ -167,7 +150,10 @@
     </div>
   </div>
   <div class="col-sm-4">
-
+    <div class=" card" style="height: 1485px;margin-right: 30px;margin-left: 5px;">
+      <a class="twitter-timeline" data-height="1455" data-theme="dark" href="https://twitter.com/PIB_India?ref_src=twsrc%5Etfw">Tweets by
+        PIB_India</a>
+    </div>
   </div>
 </div>
 
@@ -216,7 +202,7 @@
                 style="cursor: pointer;padding:5px;border-radius:10px">
                 Send report to your email
               </li>
-              <a href="http://localhost:5000" style="text-decoration: none;color:black" target="_blank">
+              <a href="https://doctorpatientportal.eu-gb.cf.appdomain.cloud" style="text-decoration: none;color:black" target="_blank">
                 <li class="list-group-item list-group-item-action"
                   style="cursor: pointer;padding:5px;border-radius:10px">
                   Connect to a doctor
