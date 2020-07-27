@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   WeeklyData2: any;
   imageResponse: any;
   map: mapboxgl.Map;
+  toneAnalyzerArray: Object[] = [];
   style = 'mapbox://styles/mapbox/dark-v10';
   lat = 0;
   lng = 20;
@@ -1070,6 +1071,26 @@ export class AppComponent implements OnInit {
     if (element.value.input.text == "Please upload your Chest X-Ray. With the little knowledge that I have, I want to assist you in analyzing your report (Upload format: .jpg, .jpeg, .png)") {
       this.uploadBtnEnabled = false;
     }
+
+    else if (element.value.input.text == "Return to Main Menu" || element.value.input.text == "I want to return to Main Menu") {
+      //Create User Object here and sent to Mongo
+      this.createUserObject(this.messages);
+      this.refresh();
+      return;
+      //Call To Terminate Session
+    }
+    else if (element.value.input.text == "I want to end my conversation") {
+      this.createUserObject(this.messages);
+    }
+    else if (element.value.input.text == "doctor_connect") {
+      window.location.href = 'https://doctorpatientportal.eu-gb.cf.appdomain.cloud';
+    }
+    else if (element.value.input.text == "Upload Another Image") {
+      this.uploadBtnEnabled = false;
+      this.messages.push({ botType: false, time, user: "User", message: element.value.input.text, labelList: [], image: false, endMessage: false });
+      this.messages.push(this.messages[this.messages.length - 4]);
+      return;
+    }
     // else if(element.value.input.text="")
     this.messages.push({ botType: false, time, user: "User", message: element.value.input.text, labelList: labelListInitSelectionUser, image: false, endMessage: false });
     console.log(this.messages);
@@ -1162,7 +1183,7 @@ export class AppComponent implements OnInit {
           text: text
         };
         let toneData = await this.getToneDataSync(toneObj);
-
+        this.toneAnalyzerArray.push(toneData);
         text = toneData["polarity"];
         const dataOfTone = this.chatBotService.getToneData(toneObj);
         console.log("data of tone in text", text);
@@ -1514,7 +1535,46 @@ export class AppComponent implements OnInit {
   }
 
   refresh(): void {
-    window.location.reload();
+    this.messages = [];
+    this.labelListInitSelection = [];
+    this.userObject = [];
+    this.chatBotService.getSessionId().subscribe(data => {
+      this.sessionData = data;
+      this.sessionid = this.sessionData.result.session_id;
+      console.log(this.sessionid);
+      this.chatBotService.getMessage(this.sessionid).subscribe(data1 => {
+        this.messageData = data1;
+        this.message = this.messageData.result.output.generic[0]["text"];
+        //let count = 0;
+        this.messageData.result.output.generic[1]["options"].forEach(element => {
+          this.labelListInitSelection.push(element);
+
+          console.log(element.label);
+        });
+        let hours: any;
+        if (this.d.getHours() < 10) {
+          hours = "0" + this.d.getHours();
+          console.log(hours);
+        }
+        else {
+          hours = this.d.getHours();
+          console.log(hours);
+        }
+        let minutes: any;
+        if (this.d.getMinutes() < 10) {
+          minutes = "0" + this.d.getMinutes();
+        }
+        else {
+          minutes = this.d.getMinutes();
+        }
+        let time = hours + ":" + minutes;
+        this.messages.push({ botType: true, time, user: "Yoda", message: this.message, labelList: this.labelListInitSelection, checkbox: false, image: false, endMessage: false });
+        console.log(this.messages);
+
+        // this.messages.push({ message: this.message, labelList: this.labelListInitSelection });
+        // console.log(this.messages);
+      });
+    });
   }
 
   openForm() {
@@ -1528,6 +1588,7 @@ export class AppComponent implements OnInit {
   }
 
   onFileUpload(event) {
+    console.log("event Called");
     this.selectedFile = event.target.files[0];
     this.chatBotService.getImageUrl(this.selectedFile).subscribe(data => {
       const ImageData = data;
@@ -1555,14 +1616,17 @@ export class AppComponent implements OnInit {
       console.log(this.messages);
       this.chatBotService.getMessageConfidence(this.ImageUrl).subscribe(data => {
         const responsedata = data;
+        this.uploadBtnEnabled = true;
         console.log(responsedata);
         this.imageResponse = responsedata["classifiers"][0]["classes"][0];
         console.log(this.imageResponse);
         let classData = this.imageResponse.class;
         let score = this.imageResponse.score;
         let category: any;
+        const labelList: Object[] = [];
+        labelList.push({ label: "Return to Main Menu", value: { input: { text: "Return to Main Menu" } } });
         category = "Category: " + classData + ", Score: " + score;
-        this.messages.push({ botType: true, time, user: "YODA", message: category, labelList: [], checkbox: false, image: false, endMessage: false });
+        this.messages.push({ botType: true, time, user: "YODA", message: category, labelList: labelList, checkbox: false, image: false, endMessage: false });
       });
     });
   }
@@ -1583,37 +1647,117 @@ export class AppComponent implements OnInit {
   }
 
   createUserObject(messages: Object[]) {
-    let emailid = "";
-    let name = "";
-    let gender = "";
-    let age = "";
-    for (let i = 0; i < messages.length; i++) {
-      if ((messages[i]["message"]).includes("Ok I will send you the details to")) {
-        emailid = (messages[i - 1]["message"]);
-        this.emailid = emailid;
-        console.log(emailid);
+
+    if (messages[3]["message"] == "self assessment") {
+      let emailid = "";
+      let name = "";
+      let gender = "";
+      let age = "";
+      let longterm = "";
+      let currentSymtpoms = "";
+      let fever = "";
+      let symptomsWorsening = "";
+      let breathingFast = "";
+      let extraCovidSymptoms = "";
+      let covidContactHistory = "";
+      for (let i = 0; i < messages.length; i++) {
+        if ((messages[i]["message"]).includes("Ok I will send you the details to")) {
+          emailid = (messages[i - 1]["message"]);
+          this.emailid = emailid;
+          console.log(emailid);
+        }
+        if ((messages[i]["message"]).includes("Select your Gender")) {
+          name = (messages[i - 1]["message"]);
+          console.log(name);
+        }
+        if ((messages[i]["message"]).includes("Can you share your age?")) {
+          gender = (messages[i - 1]["message"]);
+          console.log(gender);
+        }
+        if ((messages[i]["message"]).includes("Are you disease-free")) {
+          age = (messages[i - 1]["message"]);
+          longterm = (messages[i + 1]["message"]);
+          console.log(age);
+        }
+        if ((messages[i]["message"]).includes("look similar to the flu and other ailments")) {
+          currentSymtpoms = (messages[i + 1]["message"]);
+        }
+        if ((messages[i]["message"]).includes("How much temperature are you having?")) {
+          fever = (messages[i + 1]["message"]);
+        }
+        if ((messages[i]["message"]).includes("Symptoms worsening?")) {
+          symptomsWorsening = (messages[i + 1]["message"]);
+        }
+        if ((messages[i]["message"]).includes("Are you breathing fast?")) {
+          breathingFast = (messages[i + 1]["message"]);
+        }
+        if ((messages[i]["message"]).includes("Now lets check if you have any mode of transmission of the virus")) {
+          covidContactHistory = (messages[i + 1]["message"]);
+        }
+        if ((messages[i]["message"]).includes("A little more info is what I need to assist")) {
+          extraCovidSymptoms = (messages[i + 1]["message"]);
+        }
       }
-      if ((messages[i]["message"]).includes("Select your Gender")) {
-        name = (messages[i - 1]["message"]);
-        console.log(name);
+      console.log(this.toneAnalyzerArray);
+      this.userObject = { emailid, name, gender, age, longterm, currentSymtpoms, fever, symptomsWorsening, breathingFast, extraCovidSymptoms, covidContactHistory };
+      console.log("This is UserObject", this.userObject);
+      this.chatBotService.getPdfUrl(this.userObject).subscribe(data => {
+        let userData = data;
+        this.userPdfUrl = userData["ReportPDF"];
+        this.userPdfFilePath = userData["file_path"];
+        console.log(this.userPdfUrl);
+      });
+    }
+    else if (messages[3]["message"] == "analysis") {
+      if (messages[5]["message"] == "x-ray") {
+        let emailid = "";
+        let path = "";
+        for (let i = 0; i < messages.length; i++) {
+          if ((messages[i]["message"]).includes("Please upload your Chest X-Ray")) {
+            path = (messages[i + 1]["message"]);
+            emailid = (messages[i - 1]["message"]);
+          }
+        }
+        this.userObject = { emailid, path };
+        console.log(this.userObject);
+        this.chatBotService.sendXrayData(this.userObject).subscribe(data => {
+          console.log("return for Xray Image", data);
+        });;
       }
-      if ((messages[i]["message"]).includes("Can you share your age?")) {
-        gender = (messages[i - 1]["message"]);
-        console.log(name);
-      }
-      if ((messages[i]["message"]).includes("Are you disease-free")) {
-        age = (messages[i - 1]["message"]);
-        console.log(name);
+      else if (messages[5]["message"] == "post_covid") {
+        let emailid = "";
+        let name = "";
+        let sufferDays = "";
+        let hospitalHome = "";
+        let covidSymptoms = "";
+        let extraSymptoms = "";
+        for (let i = 0; i < messages.length; i++) {
+          if ((messages[i]["message"]).includes("I need to know your name too")) {
+            emailid = (messages[i - 1]["message"]);
+          }
+          if ((messages[i]["message"]).includes("How are you now?")) {
+            name = (messages[i - 1]["message"]);
+          }
+          if ((messages[i]["message"]).includes("So were you in home or admitted in hospital for the treatment?")) {
+            sufferDays = (messages[i - 1]["message"]);
+          }
+          if ((messages[i]["message"]).includes("How did the local authorities helped you in testing") || (messages[i]["message"]).includes("Kindly enter the name of the hospital/nursing-home")) {
+            hospitalHome = (messages[i - 1]["message"]);
+          }
+          if ((messages[i]["message"]).includes("How did you came to know that you are a COVID +ve")) {
+            covidSymptoms = (messages[i + 1]["message"]);
+          }
+          if ((messages[i]["message"]).includes("If you had any of these symptoms kindly selec")) {
+            extraSymptoms = (messages[i + 1]["message"]);
+          }
+        }
+        this.userObject = { emailid, name, sufferDays, hospitalHome, covidSymptoms, extraSymptoms, toneAnalyzerArray: this.toneAnalyzerArray };
+        console.log(this.userObject);
+        this.chatBotService.sendPostCovidData(this.userObject).subscribe(data => {
+          console.log("return for Post Covid Data", data);
+        });;
       }
     }
-    this.userObject = { emailid, name, gender, age };
-    console.log(this.userObject);
-    this.chatBotService.getPdfUrl(this.userObject).subscribe(data => {
-      let userData = data;
-      this.userPdfUrl = userData["ReportPDF"];
-      this.userPdfFilePath = userData["file_path"];
-      console.log(this.userPdfUrl);
-    })
   }
 
   sendEmailToUser() {
@@ -1658,4 +1802,6 @@ export class AppComponent implements OnInit {
   ngAfterViewInit(): void {
     (<any>window).twttr.widgets.load();
   }
+
+
 }

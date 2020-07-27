@@ -53,6 +53,14 @@ export class ChatbotService {
     });
   }
 
+  sendXrayData(userObj) {
+    return this.http.post("https://acroinfer.in/addXRayImage", userObj);
+  }
+
+  sendPostCovidData(userObj) {
+    return this.http.post("https://acroinfer.in/addPostCovid", userObj);
+  }
+
   getCoordinatesData() {
     return this.http.get('https://prod-api-humble-otter-wj.eu-gb.mybluemix.net/api/countryDetails');
   }

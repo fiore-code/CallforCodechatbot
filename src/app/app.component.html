@@ -151,7 +151,8 @@
   </div>
   <div class="col-sm-4">
     <div class=" card" style="height: 1485px;margin-right: 30px;margin-left: 5px;">
-      <a class="twitter-timeline" data-height="1455" data-theme="dark" href="https://twitter.com/PIB_India?ref_src=twsrc%5Etfw">Tweets by
+      <a class="twitter-timeline" data-height="1455" data-theme="dark"
+        href="https://twitter.com/PIB_India?ref_src=twsrc%5Etfw">Tweets by
         PIB_India</a>
     </div>
   </div>
@@ -202,12 +203,17 @@
                 style="cursor: pointer;padding:5px;border-radius:10px">
                 Send report to your email
               </li>
-              <a href="https://doctorpatientportal.eu-gb.cf.appdomain.cloud" style="text-decoration: none;color:black" target="_blank">
+              <a href="https://doctorpatientportal.eu-gb.cf.appdomain.cloud" style="text-decoration: none;color:black"
+                target="_blank">
                 <li class="list-group-item list-group-item-action"
                   style="cursor: pointer;padding:5px;border-radius:10px">
                   Connect to a doctor
                 </li>
               </a>
+              <li (click)="refresh()" class="list-group-item list-group-item-action"
+                style="cursor: pointer;padding:5px;border-radius:10px">
+                Return to Main Menu
+              </li>
             </ul>
           </div>
         </div>
