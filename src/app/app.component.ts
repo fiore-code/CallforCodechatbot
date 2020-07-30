@@ -1072,7 +1072,7 @@ export class AppComponent implements OnInit {
       this.uploadBtnEnabled = false;
     }
 
-    else if (element.value.input.text == "Return to Main Menu" || element.value.input.text == "I want to return to Main Menu") {
+    else if (element.value.input.text == "Return to Main Menu" || element.value.input.text == "I want to return to Main Menu" || element.value.input.text == "Go back to Main Menu") {
       //Create User Object here and sent to Mongo
       this.createUserObject(this.messages);
       this.refresh();
@@ -1712,13 +1712,15 @@ export class AppComponent implements OnInit {
       if (messages[5]["message"] == "x-ray") {
         let emailid = "";
         let path = "";
+        let category = "";
         for (let i = 0; i < messages.length; i++) {
           if ((messages[i]["message"]).includes("Please upload your Chest X-Ray")) {
             path = (messages[i + 1]["message"]);
             emailid = (messages[i - 1]["message"]);
+            category = (messages[i + 2]["message"]);
           }
         }
-        this.userObject = { emailid, path };
+        this.userObject = { emailid, path, category };
         console.log(this.userObject);
         this.chatBotService.sendXrayData(this.userObject).subscribe(data => {
           console.log("return for Xray Image", data);

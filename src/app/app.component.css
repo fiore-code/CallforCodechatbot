@@ -230,20 +230,20 @@ option{
   display: table;
   clear: both;
 }
-@media screen and (max-width:600px) {
+@media only screen and (max-width:600px) {
   .column {
     width: 100%;
   }
-  
-.columnNew {
-  width: 100%;
-}
+  .columnNew{
+    width: 100%;
+  }
 
 }
+
 
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
   padding: 20px;
   text-align: center;
   background-color: #333;
