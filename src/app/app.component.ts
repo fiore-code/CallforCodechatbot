@@ -897,7 +897,7 @@ export class AppComponent implements OnInit {
       this.WeeklyData2 = data;
 
       this.WeeklyData2.forEach(element => {
-        this.list8.push(element.Date);//list9 is a date list
+        this.list8.push(element.Date);//list8 is a date list
         this.list9.push(element.Recovered);//list9 is a recovered list
         this.list10.push(element.Death);//list 10 is a death list
       });
