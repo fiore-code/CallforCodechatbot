@@ -45,7 +45,7 @@ Chatbots are perfect for when users are appearing on any kind of website for loc
 ## Video
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/L0uRhHbRSMs/0.jpg)](https://www.youtube.com/watch?v=L0uRhHbRSMs)
 
-For more details explanation. Please visit https://youtu.be/TqPSFHqQyI4---5min
+For more detailed explanation. Please visit https://youtu.be/TqPSFHqQyI4
 
 ## Features
 
