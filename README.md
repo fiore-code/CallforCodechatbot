@@ -57,6 +57,29 @@ Chatbots are perfect for when users are appearing on any kind of website for loc
 ![image](https://user-images.githubusercontent.com/29679357/89051262-9a32b100-d371-11ea-94a1-8f8a7d91edb4.png)
 
 4.  COVID-19 News and Updates of the world: This section of the bot has been done through IBM Discovery and Webhook. Here, an IBM Action has been written to get the COVID-19 daily updates from an external data source (Johns Hopkins CSSE). This along with the Discovery is acting as the data source to provide the user with updated COVID counts across the countries over the world and important news. 
+
 ![image](https://user-images.githubusercontent.com/29679357/89051329-b898ac80-d371-11ea-820e-e6bb79517ca1.png)
 
+5.  User Report as PDF: Again, this is a highlighting point of the application since with the help of this we are able to consolidate the user data into a PDF and they can share it with doctor and keep it with themselves for future reference.
 
+![image](https://user-images.githubusercontent.com/29679357/89051553-10cfae80-d372-11ea-9a97-b7dcde381f43.png)
+
+### Doctor Patient Portal
+This component is designed using Angular in the Front End and in the backend the services are written in Python. The full functionality has been implemented using REST API written in Flask Python and for the database we are using MongoDB. 
+
+![image](https://user-images.githubusercontent.com/29679357/89051646-32c93100-d372-11ea-8327-216f3a2988b5.png)
+
+![image](https://user-images.githubusercontent.com/29679357/89051707-46749780-d372-11ea-86ff-7ac52f367790.png)
+
+Login module is done via OTP. When user tries to login it will ask for the registered email id and user type. Based on the correct input an OTP will be sent to user’s email and based on that login is done.
+
+![image](https://user-images.githubusercontent.com/29679357/89051762-59876780-d372-11ea-96ed-e5a400411f22.png)
+
+
+The Portal is having two separate modules for Patient and Doctors. 
+Some of the key features from the Patient module are:
+1.	Easy connect with verified set of doctors anytime anywhere.
+2.	EMR (Electronic Medical Records) Management facility.
+3.	Can easily share any file, reports, and images with Doctors for assistance.
+4.	Analytics dashboard comprising of various health statistics.
+5.	List of available doctors at a go.
