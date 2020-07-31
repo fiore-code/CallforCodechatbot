@@ -269,7 +269,6 @@ export class AppComponent implements OnInit {
     });
     this.chatBotService.getCoordinatesData().subscribe(data => {
       let dataco = data;
-      console.log(data);
     });
 
 
@@ -965,9 +964,6 @@ export class AppComponent implements OnInit {
 
       });
 
-
-
-
     });
 
 
@@ -977,35 +973,27 @@ export class AppComponent implements OnInit {
     this.checkBoxQuestionArray.push({ "How did you came to know that you are a COVID +ve? Did you have any of these?": "Fever,Shortness of breath,Cough,None" });
     this.checkBoxQuestionArray.push({ "If you had any of these symptoms kindly select:": "Fatigue,Muscle Pain,Chills,Headache,Diarrhea,Nausea,Loss of smell/taste,None" });
 
-    console.log(this.checkBoxQuestionArray);
-    console.log(this.countries);
     this.chatBotService.getWorldWideDetails().subscribe(data => {
       this.countryStorage = data;
       this.countryStatics = { confirmed: this.countryStorage.confirmed.value, recovered: this.countryStorage.recovered.value, deaths: this.countryStorage.deaths.value, recoveryRate: ((this.countryStorage.recovered.value / this.countryStorage.confirmed.value) * 100).toFixed(2), deathRate: ((this.countryStorage.deaths.value / this.countryStorage.confirmed.value) * 100).toFixed(2) };
-      console.log(this.countryStatics);
     });
     this.scrollToBottom();
     this.chatBotService.getSessionId().subscribe(data => {
       this.sessionData = data;
       this.sessionid = this.sessionData.result.session_id;
-      console.log(this.sessionid);
       this.chatBotService.getMessage(this.sessionid).subscribe(data1 => {
         this.messageData = data1;
         this.message = this.messageData.result.output.generic[0]["text"];
         //let count = 0;
         this.messageData.result.output.generic[1]["options"].forEach(element => {
           this.labelListInitSelection.push(element);
-
-          console.log(element.label);
         });
         let hours: any;
         if (this.d.getHours() < 10) {
           hours = "0" + this.d.getHours();
-          console.log(hours);
         }
         else {
           hours = this.d.getHours();
-          console.log(hours);
         }
         let minutes: any;
         if (this.d.getMinutes() < 10) {
@@ -1016,10 +1004,6 @@ export class AppComponent implements OnInit {
         }
         let time = hours + ":" + minutes;
         this.messages.push({ botType: true, time, user: "Yoda", message: this.message, labelList: this.labelListInitSelection, checkbox: false, image: false, endMessage: false });
-        console.log(this.messages);
-
-        // this.messages.push({ message: this.message, labelList: this.labelListInitSelection });
-        // console.log(this.messages);
       });
     });
   }
@@ -1029,35 +1013,29 @@ export class AppComponent implements OnInit {
   }
 
   selectedCountry(value: string) {
-    console.log(value);
     if (value == "Worldwide") {
       this.chatBotService.getWorldWideDetails().subscribe(data => {
         this.countryStorage = data;
         this.countryStatics = { confirmed: this.countryStorage.confirmed.value, recovered: this.countryStorage.recovered.value, deaths: this.countryStorage.deaths.value, recoveryRate: ((this.countryStorage.recovered.value / this.countryStorage.confirmed.value) * 100).toFixed(2), deathRate: ((this.countryStorage.deaths.value / this.countryStorage.confirmed.value) * 100).toFixed(2) };
-        console.log(this.countryStatics);
       });
     }
     else {
       this.chatBotService.getSpecificCountryDetails(value).subscribe(data => {
         this.countryStorage = data;
         this.countryStatics = { confirmed: this.countryStorage.confirmed.value, recovered: this.countryStorage.recovered.value, deaths: this.countryStorage.deaths.value, recoveryRate: ((this.countryStorage.recovered.value / this.countryStorage.confirmed.value) * 100).toFixed(2), deathRate: ((this.countryStorage.deaths.value / this.countryStorage.confirmed.value) * 100).toFixed(2) };
-        console.log(this.countryStatics);
       })
     }
   }
 
   selectedOption(event, element) {
-    console.log(element);
 
     this.labelListInitSelection = [];
     let hours: any;
     if (this.d.getHours() < 10) {
       hours = "0" + this.d.getHours();
-      console.log(hours);
     }
     else {
       hours = this.d.getHours();
-      console.log(hours);
     }
     let minutes: any;
     if (this.d.getMinutes() < 10) {
@@ -1081,6 +1059,8 @@ export class AppComponent implements OnInit {
     }
     else if (element.value.input.text == "I want to end my conversation") {
       this.createUserObject(this.messages);
+      const botInput = document.getElementById("botInput") as HTMLInputElement;
+      botInput.disabled = true;
     }
     else if (element.value.input.text == "doctor_connect") {
       window.location.href = 'https://doctorpatientportal.eu-gb.cf.appdomain.cloud';
@@ -1093,12 +1073,10 @@ export class AppComponent implements OnInit {
     }
     // else if(element.value.input.text="")
     this.messages.push({ botType: false, time, user: "User", message: element.value.input.text, labelList: labelListInitSelectionUser, image: false, endMessage: false });
-    console.log(this.messages);
     this.chatBotService.getMessageReply(this.sessionid, element.value.input.text).subscribe((data) => {
       this.messages1 = data;
       this.replyData = this.messages1.result.output.generic[0]["text"];
       this.replyData1 = this.messages1.result.output.generic[1];
-      console.log(this.replyData1);
 
 
       if (this.replyData1 == undefined) {
@@ -1111,11 +1089,9 @@ export class AppComponent implements OnInit {
       }
       if (this.d.getHours() < 10) {
         hours = "0" + this.d.getHours();
-        console.log(hours);
       }
       else {
         hours = this.d.getHours();
-        console.log(hours);
       }
 
       if (this.d.getMinutes() < 10) {
@@ -1128,9 +1104,7 @@ export class AppComponent implements OnInit {
       let keyExists = false;
       let keyObject;
       for (let i = 0; i < this.checkBoxQuestionArray.length; i++) {
-        console.log(this.checkBoxQuestionArray[i]);
         if (this.replyData in this.checkBoxQuestionArray[i]) {
-          console.log("dhukheche");
           keyExists = true;
           keyObject = this.checkBoxQuestionArray[i];
           break;
@@ -1139,20 +1113,15 @@ export class AppComponent implements OnInit {
       if (keyExists) {
         let checkboxString = keyObject[this.replyData];
         var arrayCheckBox = checkboxString.split(",");
-        console.log(checkboxString);
-        console.log(arrayCheckBox);
         let labelListCheckBox: Object[] = [];
         for (let j = 0; j < arrayCheckBox.length; j++) {
           labelListCheckBox.push({ label: arrayCheckBox[j], value: { input: { text: arrayCheckBox[j] } } });
         }
         this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: labelListCheckBox, checkbox: true, image: false, endMessage: false });
         this.replyData = null;
-        console.log(this.messages);
       }
       else {
-        console.log("value of message before entering the check end message", this.replyData);
         const yesEndMessage = this.checkEndMessage(this.replyData);
-        console.log("value of end message", yesEndMessage);
         if (yesEndMessage) {
           this.createUserObject(this.messages);
           this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: [], checkbox: false, image: false, endMessage: true });
@@ -1161,7 +1130,6 @@ export class AppComponent implements OnInit {
           this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: this.labelListInitSelection, checkbox: false, image: false, endMessage: false });
           this.replyData = null;
         }
-        console.log(this.messages);
       }
     });
     this.scrollToBottom();
@@ -1176,7 +1144,6 @@ export class AppComponent implements OnInit {
     }
     else {
       event.target.value = '';
-      console.log("Post Covid Enabled Value", this.isPostCovidEnabled);
       if (this.isPostCovidEnabled) {
         postCovidText = text;
         const toneObj = {
@@ -1186,21 +1153,14 @@ export class AppComponent implements OnInit {
         this.toneAnalyzerArray.push(toneData);
         text = toneData["polarity"];
         const dataOfTone = this.chatBotService.getToneData(toneObj);
-        console.log("data of tone in text", text);
       }
-      //console.log(element);
-      //console.log(text);
       let lastMessage = this.messages[this.messages.length - 1];
-      console.log('eta last message');
-      console.log(lastMessage);
       let hours: any;
       if (this.d.getHours() < 10) {
         hours = "0" + this.d.getHours();
-        console.log(hours);
       }
       else {
         hours = this.d.getHours();
-        console.log(hours);
       }
       let minutes: any;
       if (this.d.getMinutes() < 10) {
@@ -1212,37 +1172,29 @@ export class AppComponent implements OnInit {
       let time = hours + ":" + minutes;
       if (lastMessage["message"] == "👀 Can you share your age? 👀") {
         if (text > 0 && text < 120) {
-          console.log("thik age");
           this.labelListInitSelection = [];
           let labelListInitSelectionUser: String[] = [];
           this.messages.push({ botType: false, time, user: "User", message: text, labelList: labelListInitSelectionUser, checkbox: false, image: false, endMessage: false });
-          console.log("this is the messages after user");
-          console.log(this.messages);
           this.chatBotService.getMessageReply(this.sessionid, text).subscribe((data) => {
             this.messages1 = data;
             this.replyData = this.messages1.result.output.generic[0]["text"];
             this.replyData1 = this.messages1.result.output.generic[1];
-            console.log(this.replyData1);
 
 
 
             if (this.replyData1 == undefined) {
               this.labelListInitSelection = [];
-              console.log("entered 1");
             }
             else if (this.replyData1 != undefined) {
-              console.log("entered 2");
               this.messages1.result.output.generic[1]["options"].forEach(element => {
                 this.labelListInitSelection.push(element);
               });
             }
             if (this.d.getHours() < 10) {
               hours = "0" + this.d.getHours();
-              console.log(hours);
             }
             else {
               hours = this.d.getHours();
-              console.log(hours);
             }
             if (this.d.getMinutes() < 10) {
               minutes = "0" + this.d.getMinutes();
@@ -1254,9 +1206,7 @@ export class AppComponent implements OnInit {
             let keyExists = false;
             let keyObject;
             for (let i = 0; i < this.checkBoxQuestionArray.length; i++) {
-              console.log(this.checkBoxQuestionArray[i]);
               if (this.replyData in this.checkBoxQuestionArray[i]) {
-                console.log("dhukheche");
                 keyExists = true;
                 keyObject = this.checkBoxQuestionArray[i];
                 break;
@@ -1265,26 +1215,21 @@ export class AppComponent implements OnInit {
             if (keyExists) {
               let checkboxString = keyObject[this.replyData];
               var arrayCheckBox = checkboxString.split(",");
-              console.log(checkboxString);
-              console.log(arrayCheckBox);
               let labelListCheckBox: Object[] = [];
               for (let j = 0; j < arrayCheckBox.length; j++) {
                 labelListCheckBox.push({ label: arrayCheckBox[j], value: { input: { text: arrayCheckBox[j], isChecked: false } } });
               }
               this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: labelListCheckBox, checkbox: true, image: false, endMessage: false });
               this.replyData = null;
-              console.log(this.messages);
             }
             else {
               this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: this.labelListInitSelection, checkbox: false, image: false, endMessage: false });
               this.replyData = null;
-              console.log(this.messages);
             }
 
           });
         }
         else {
-          console.log("bhul age");
           this.messages.push({ botType: false, time, user: "User", message: text, labelList: [], checkbox: false, image: false, endMessage: false });
           this.messages.push(lastMessage);
         }
@@ -1293,44 +1238,35 @@ export class AppComponent implements OnInit {
         this.labelListInitSelection = [];
         let labelListInitSelectionUser: String[] = [];
         if (this.isPostCovidEnabled) {
-          console.log("text before insertion to code", text);
           this.messages.push({ botType: false, time, user: "User", message: postCovidText, labelList: labelListInitSelectionUser, checkbox: false, image: false, endMessage: false });
           this.isPostCovidEnabled = false;
         }
         else {
           this.messages.push({ botType: false, time, user: "User", message: text, labelList: labelListInitSelectionUser, checkbox: false, image: false, endMessage: false });
         }
-        console.log("this is the messages after user");
-        console.log(this.messages);
         this.chatBotService.getMessageReply(this.sessionid, text).subscribe((data) => {
           this.messages1 = data;
           this.replyData = this.messages1.result.output.generic[0]["text"];
           this.replyData1 = this.messages1.result.output.generic[1];
-          console.log(this.replyData1);
           if (this.replyData.includes("How are you now?") || this.replyData.includes("Can you share with me why are you feeling so?") || this.replyData.includes("So how was the staff") || this.replyData.includes("How did the local authorities helped you")) {
             this.isPostCovidEnabled = true;
-            console.log("post covid dhukheche");
           }
           else if (this.replyData == "Please upload your Chest X-Ray. With the little knowledge that I have, I want to assist you in analyzing your report (Upload format: .jpg, .jpeg, .png)") {
             this.uploadBtnEnabled = false;
           }
           if (this.replyData1 == undefined) {
             this.labelListInitSelection = [];
-            console.log("entered 1");
           }
           else if (this.replyData1 != undefined) {
-            console.log("entered 2");
             this.messages1.result.output.generic[1]["options"].forEach(element => {
               this.labelListInitSelection.push(element);
             });
           }
           if (this.d.getHours() < 10) {
             hours = "0" + this.d.getHours();
-            console.log(hours);
           }
           else {
             hours = this.d.getHours();
-            console.log(hours);
           }
           if (this.d.getMinutes() < 10) {
             minutes = "0" + this.d.getMinutes();
@@ -1342,9 +1278,7 @@ export class AppComponent implements OnInit {
           let keyExists = false;
           let keyObject;
           for (let i = 0; i < this.checkBoxQuestionArray.length; i++) {
-            console.log(this.checkBoxQuestionArray[i]);
             if (this.replyData in this.checkBoxQuestionArray[i]) {
-              console.log("dhukheche");
               keyExists = true;
               keyObject = this.checkBoxQuestionArray[i];
               break;
@@ -1353,20 +1287,16 @@ export class AppComponent implements OnInit {
           if (keyExists) {
             let checkboxString = keyObject[this.replyData];
             var arrayCheckBox = checkboxString.split(",");
-            console.log(checkboxString);
-            console.log(arrayCheckBox);
             let labelListCheckBox: Object[] = [];
             for (let j = 0; j < arrayCheckBox.length; j++) {
               labelListCheckBox.push({ label: arrayCheckBox[j], value: { input: { text: arrayCheckBox[j], isChecked: false } } });
             }
             this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: labelListCheckBox, checkbox: true, image: false, endMessage: false });
             this.replyData = null;
-            console.log(this.messages);
           }
           else {
             this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: this.labelListInitSelection, checkbox: false, image: false, endMessage: false });
             this.replyData = null;
-            console.log(this.messages);
           }
 
         });
@@ -1400,10 +1330,7 @@ export class AppComponent implements OnInit {
     }
     else {
       if (this.checkListSelection.indexOf(element.value.input.text) == -1) {
-        //console.log(this.checkListSelection.indexOf("no symptoms"));
-        console.log(this.checkListSelection.indexOf("None"));
         if (this.checkListSelection.indexOf("None") == -1) {
-          console.log("enters here");
           this.checkListSelection.push(element.value.input.text);
         } else {
           const attribute = document.getElementById(element.value.input.text) as HTMLInputElement;
@@ -1415,7 +1342,6 @@ export class AppComponent implements OnInit {
         this.checkListSelection.splice(index, 1);
       }
     }
-    console.log(this.checkListSelection);
     if (this.checkListSelection.length > 0) {
       this.btnEnabled = false;
     }
@@ -1428,15 +1354,12 @@ export class AppComponent implements OnInit {
 
 
     //store details to database of checkListSelection
-    console.log(this.checkListSelection);
     let hours: any;
     if (this.d.getHours() < 10) {
       hours = "0" + this.d.getHours();
-      console.log(hours);
     }
     else {
       hours = this.d.getHours();
-      console.log(hours);
     }
     let minutes: any;
     if (this.d.getMinutes() < 10) {
@@ -1449,50 +1372,39 @@ export class AppComponent implements OnInit {
 
     if (this.messages[this.messages.length - 1]["message"] == "🤕Symptoms of the Coronavirus(COVID-19) can look similar to the flu and other ailments. Coming to current situations, are you facing from any of these recently?🤕" || this.messages[this.messages.length - 1]["message"] == "How did you came to know that you are a COVID +ve? Did you have any of these?") {
       if (this.checkListSelection.indexOf("None") != -1) {
-        console.log("dhuklo ekhane");
         let index = this.checkListSelection.indexOf("None");
         this.checkListSelection.splice(index, 1);
         this.checkListSelection.push("no symptoms");
-        console.log(this.checkListSelection);
       }
     }
     else if (this.messages[this.messages.length - 1]["message"] == "A little more info is what I need to assist. 🙂 Does any of these troubles you?" || this.messages[this.messages.length - 1]["message"] == "If you had any of these symptoms kindly select:") {
       if (this.checkListSelection.indexOf("None") != -1) {
-        console.log("dhuklo ekhaneo");
         let index = this.checkListSelection.indexOf("None");
         this.checkListSelection.splice(index, 1);
         this.checkListSelection.push("not applicable");
-        console.log(this.checkListSelection);
       }
     }
     //IBM Watson CALL
     this.chatBotService.getMessageReply(this.sessionid, this.checkListSelection).subscribe((data) => {
       this.messages1 = data;
-      console.log(data);
       this.replyData = this.messages1.result.output.generic[0]["text"];
       this.replyData1 = this.messages1.result.output.generic[1];
-      console.log(this.replyData1);
       this.messages.push({ botType: false, time, user: "User", message: this.checkListSelection.toString(), labelList: [], checkbox: false, image: false, endMessage: false });
       this.checkListSelection = [];
       this.labelListInitSelection = [];
       if (this.replyData1 == undefined) {
         this.labelListInitSelection = [];
-        console.log("entered 1");
       }
       else if (this.replyData1 != undefined) {
-        console.log("entered 2");
         this.messages1.result.output.generic[1]["options"].forEach(element => {
-          console.log(element);
           this.labelListInitSelection.push(element);
         });
       }
       if (this.d.getHours() < 10) {
         hours = "0" + this.d.getHours();
-        console.log(hours);
       }
       else {
         hours = this.d.getHours();
-        console.log(hours);
       }
       if (this.d.getMinutes() < 10) {
         minutes = "0" + this.d.getMinutes();
@@ -1504,9 +1416,7 @@ export class AppComponent implements OnInit {
       let keyExists = false;
       let keyObject;
       for (let i = 0; i < this.checkBoxQuestionArray.length; i++) {
-        console.log(this.checkBoxQuestionArray[i]);
         if (this.replyData in this.checkBoxQuestionArray[i]) {
-          console.log("dhukheche");
           keyExists = true;
           keyObject = this.checkBoxQuestionArray[i];
           break;
@@ -1515,20 +1425,16 @@ export class AppComponent implements OnInit {
       if (keyExists) {
         let checkboxString = keyObject[this.replyData];
         var arrayCheckBox = checkboxString.split(",");
-        console.log(checkboxString);
-        console.log(arrayCheckBox);
         let labelListCheckBox: Object[] = [];
         for (let j = 0; j < arrayCheckBox.length; j++) {
           labelListCheckBox.push({ label: arrayCheckBox[j], value: { input: { text: arrayCheckBox[j] } } });
         }
         this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: labelListCheckBox, checkbox: true, image: false, endMessage: false });
         this.replyData = null;
-        console.log(this.messages);
       }
       else {
         this.messages.push({ botType: true, time, user: "Yoda", message: this.replyData, labelList: this.labelListInitSelection, checkbox: false, image: false, endMessage: false });
         this.replyData = null;
-        console.log(this.messages);
       }
     });
     this.scrollToBottom();
@@ -1541,24 +1447,19 @@ export class AppComponent implements OnInit {
     this.chatBotService.getSessionId().subscribe(data => {
       this.sessionData = data;
       this.sessionid = this.sessionData.result.session_id;
-      console.log(this.sessionid);
       this.chatBotService.getMessage(this.sessionid).subscribe(data1 => {
         this.messageData = data1;
         this.message = this.messageData.result.output.generic[0]["text"];
         //let count = 0;
         this.messageData.result.output.generic[1]["options"].forEach(element => {
           this.labelListInitSelection.push(element);
-
-          console.log(element.label);
         });
         let hours: any;
         if (this.d.getHours() < 10) {
           hours = "0" + this.d.getHours();
-          console.log(hours);
         }
         else {
           hours = this.d.getHours();
-          console.log(hours);
         }
         let minutes: any;
         if (this.d.getMinutes() < 10) {
@@ -1569,10 +1470,6 @@ export class AppComponent implements OnInit {
         }
         let time = hours + ":" + minutes;
         this.messages.push({ botType: true, time, user: "Yoda", message: this.message, labelList: this.labelListInitSelection, checkbox: false, image: false, endMessage: false });
-        console.log(this.messages);
-
-        // this.messages.push({ message: this.message, labelList: this.labelListInitSelection });
-        // console.log(this.messages);
       });
     });
   }
@@ -1588,21 +1485,16 @@ export class AppComponent implements OnInit {
   }
 
   onFileUpload(event) {
-    console.log("event Called");
     this.selectedFile = event.target.files[0];
     this.chatBotService.getImageUrl(this.selectedFile).subscribe(data => {
       const ImageData = data;
-      console.log(ImageData);
       this.ImageUrl = ImageData["response"];
-      console.log(this.ImageUrl);
       let hours: any;
       if (this.d.getHours() < 10) {
         hours = "0" + this.d.getHours();
-        console.log(hours);
       }
       else {
         hours = this.d.getHours();
-        console.log(hours);
       }
       let minutes: any;
       if (this.d.getMinutes() < 10) {
@@ -1613,13 +1505,10 @@ export class AppComponent implements OnInit {
       }
       let time = hours + ":" + minutes;
       this.messages.push({ botType: false, time, user: "User", message: this.ImageUrl, labelList: [], checkbox: false, image: true, endMessage: false });
-      console.log(this.messages);
       this.chatBotService.getMessageConfidence(this.ImageUrl).subscribe(data => {
         const responsedata = data;
         this.uploadBtnEnabled = true;
-        console.log(responsedata);
         this.imageResponse = responsedata["classifiers"][0]["classes"][0];
-        console.log(this.imageResponse);
         let classData = this.imageResponse.class;
         let score = this.imageResponse.score;
         let category: any;
@@ -1632,10 +1521,8 @@ export class AppComponent implements OnInit {
   }
 
   checkEndMessage(message: string): any {
-    console.log("if excalamtion present", message.indexOf('!'));
     if (message.indexOf('!') != -1) {
       if (this.endMessage.indexOf(message.split("!!")[0]) != -1) {
-        console.log("entered the split section");
         let index = this.endMessage.indexOf(message.split("!!")[0]);
         this.currentEndMessageUrl = this.endMessageUrls[index];
         return true;
@@ -1664,20 +1551,16 @@ export class AppComponent implements OnInit {
         if ((messages[i]["message"]).includes("Ok I will send you the details to")) {
           emailid = (messages[i - 1]["message"]);
           this.emailid = emailid;
-          console.log(emailid);
         }
         if ((messages[i]["message"]).includes("Select your Gender")) {
           name = (messages[i - 1]["message"]);
-          console.log(name);
         }
         if ((messages[i]["message"]).includes("Can you share your age?")) {
           gender = (messages[i - 1]["message"]);
-          console.log(gender);
         }
         if ((messages[i]["message"]).includes("Are you disease-free")) {
           age = (messages[i - 1]["message"]);
           longterm = (messages[i + 1]["message"]);
-          console.log(age);
         }
         if ((messages[i]["message"]).includes("look similar to the flu and other ailments")) {
           currentSymtpoms = (messages[i + 1]["message"]);
@@ -1698,14 +1581,11 @@ export class AppComponent implements OnInit {
           extraCovidSymptoms = (messages[i + 1]["message"]);
         }
       }
-      console.log(this.toneAnalyzerArray);
       this.userObject = { emailid, name, gender, age, longterm, currentSymtpoms, fever, symptomsWorsening, breathingFast, extraCovidSymptoms, covidContactHistory };
-      console.log("This is UserObject", this.userObject);
       this.chatBotService.getPdfUrl(this.userObject).subscribe(data => {
         let userData = data;
         this.userPdfUrl = userData["ReportPDF"];
         this.userPdfFilePath = userData["file_path"];
-        console.log(this.userPdfUrl);
       });
     }
     else if (messages[3]["message"] == "analysis") {
@@ -1721,9 +1601,7 @@ export class AppComponent implements OnInit {
           }
         }
         this.userObject = { emailid, path, category };
-        console.log(this.userObject);
         this.chatBotService.sendXrayData(this.userObject).subscribe(data => {
-          console.log("return for Xray Image", data);
         });;
       }
       else if (messages[5]["message"] == "post_covid") {
@@ -1754,16 +1632,13 @@ export class AppComponent implements OnInit {
           }
         }
         this.userObject = { emailid, name, sufferDays, hospitalHome, covidSymptoms, extraSymptoms, toneAnalyzerArray: this.toneAnalyzerArray };
-        console.log(this.userObject);
         this.chatBotService.sendPostCovidData(this.userObject).subscribe(data => {
-          console.log("return for Post Covid Data", data);
         });;
       }
     }
   }
 
   sendEmailToUser() {
-    console.log("ha akahne to asche");
     const emailObj = {
       emailid: this.emailid,
       path: this.userPdfFilePath
@@ -1783,8 +1658,6 @@ export class AppComponent implements OnInit {
   }
 
   openXl(content, state) {
-    //console.log(state);
-    console.log("clicked");
     this.chatBotService.getDistrictData().subscribe(data => {
       this.districtData = data;
       //this.districtDataTable=this.districtData.values();

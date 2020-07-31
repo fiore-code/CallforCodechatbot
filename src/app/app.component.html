@@ -1,4 +1,4 @@
-<div class="topnav" style="font-family: 'Montserrat';">
+<div class="topnav" id="topnav" style="font-family: 'Montserrat';">
   <a href="#">Covid 19-tracker</a>
   <a href="https://doctorpatientportal.eu-gb.cf.appdomain.cloud " target="_blank">Doctor Patient Portal</a>
   <a href="https://www.icmr.gov.in/" target="_blank" style="float: right;">ICMR</a>
@@ -156,6 +156,10 @@
         PIB_India</a>
     </div>
   </div>
+</div>
+<div class="row" style="background-color:#333 ;padding: 50px;">
+  <a href="#topnav" style="font-family: 'Montserrat';border: 1px black solid;color:white;background-color: black;padding: 10px;border-radius: 10px;margin-left: 50%;text-decoration: none;">Back To Top</a>
+  <h4 style="color: white;margin-left: 48%;margin-top: 20px;font-family: 'Montserrat';">@Yoda Call for Code</h4>
 </div>
 
 
@@ -330,7 +334,8 @@
         (change)="onFileUpload($event)">
     </label>
 
-    <input type="text" class="msger-input" placeholder="Enter your message..." (keyup.enter)="textInput($event)">
+    <input type="text" id="botInput" class="msger-input" placeholder="Enter your message..."
+      (keyup.enter)="textInput($event)">
 
   </div>
 </section>
