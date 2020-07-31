@@ -13,6 +13,7 @@ npm install
 npm start
 ```
 ##Objectives
+
 Chatbots are perfect for when users are appearing on any kind of website for location based information or generic COVID-19 related information. Especially since they cannot wait to talk to real person, this information is crucial to be received right away 24/7. They are asking questions like:
 •	What is the number cases in a specific area
 •	What is the lockdown situation
