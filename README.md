@@ -36,25 +36,27 @@ Chatbots are perfect for when users are appearing on any kind of website for loc
 
 ## Architecture
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ![solution architecture](https://user-images.githubusercontent.com/29679357/89049610-28f1fe80-d36f-11ea-9bbf-03975c23049b.png)
 
 ## Video
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/K0ibsAQTyRQ/0.jpg)](https://www.youtube.com/watch?v=K0ibsAQTyRQ)
+
+## Features
+
+### Chatbot
+  1.  COVID-19 Self-Assessment Check: Here, the bot will be asking some basic questions based on the current situation to the user, like long term symptoms, current symptoms, travel history and many more. The set of questions are modified by Watson Assistant depending on the user’s input and based on those a preliminary analysis of the user’s health will be done from the backend which will act as a pro-active approach
+  
+  ![image](https://user-images.githubusercontent.com/29679357/89051085-563fac00-d371-11ea-9afc-9f9ef34ee96f.png)
+  
+ 2. Chest X-Ray Analysis: This analysis has been implemented using Visual Recognition Service of IBM. Here, we have developed our custom image classifier that will classify “Chest X-Ray” images which will be provided by the user as an input to the bot.
+ 
+ ![image](https://user-images.githubusercontent.com/29679357/89051149-70798a00-d371-11ea-8d9c-30070abd6af9.png)
+ 
+ 3. Sentiment Analysis of COVID victims:T his is one of the most unique features of the application. We have implemented this using Python and Machine Learning (NaiveBayesClassifier). Based on user's input, the polarity of the sentence is determined whether the tone of the sentence is “Bad”, ”Worst”, ”Good”, ”Best”. This is implemented in the Chatbot using REST API deployed in IBM Cloud Foundry.
+ 
+![image](https://user-images.githubusercontent.com/29679357/89051262-9a32b100-d371-11ea-94a1-8f8a7d91edb4.png)
+
+4.  COVID-19 News and Updates of the world: This section of the bot has been done through IBM Discovery and Webhook. Here, an IBM Action has been written to get the COVID-19 daily updates from an external data source (Johns Hopkins CSSE). This along with the Discovery is acting as the data source to provide the user with updated COVID counts across the countries over the world and important news. 
+![image](https://user-images.githubusercontent.com/29679357/89051329-b898ac80-d371-11ea-820e-e6bb79517ca1.png)
 
 
