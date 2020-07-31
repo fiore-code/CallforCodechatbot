@@ -1444,6 +1444,8 @@ export class AppComponent implements OnInit {
     this.messages = [];
     this.labelListInitSelection = [];
     this.userObject = [];
+    const botInput = document.getElementById("botInput") as HTMLInputElement;
+    botInput.disabled = false;
     this.chatBotService.getSessionId().subscribe(data => {
       this.sessionData = data;
       this.sessionid = this.sessionData.result.session_id;

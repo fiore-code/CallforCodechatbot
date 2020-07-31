@@ -24,4 +24,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+# COVID Crisis Chatbot
+The COVID-19, also known as the coronavirus, is an ongoing pandemic of coronavirus disease 2019 (COVID‑19), caused by severe acute respiratory syndrome coronavirus 2 (SARS‑CoV‑2). The World Health Organization declared the outbreak a Public Health Emergency of International Concern on 30 January, and a pandemic on 11 March. Yet, dissemination of accurate, up-to-date information about the spread of the disease remains a challenge. Today’s audiences prefer social media over traditional channels but many social media channels have been challenged by fake news and privacy breaches, and aren’t always fully reliable. This is where our Chatbot solution “YODA” integrated into a platform comes into picture with its modern features like text-based interaction, ML, Thermal Imaging, Sentiment Analysis and a Doctor-Patient portal to address the coronavirus crisis.
+
+![image](https://user-images.githubusercontent.com/29679357/89034908-87ab7e00-d357-11ea-8838-9b26d8745c8b.png)
+
