@@ -34,5 +34,8 @@ Chatbots are perfect for when users are appearing on any kind of website for loc
 3.  Python
 4.  Database(NoSQL)
 
+## Architecture
+
+![solution architecture](https://user-images.githubusercontent.com/29679357/89049610-28f1fe80-d36f-11ea-9bbf-03975c23049b.png)
 
 
