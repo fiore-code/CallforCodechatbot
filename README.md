@@ -32,7 +32,7 @@ Chatbots are perfect for when users are appearing on any kind of website for loc
 1.  IBM Cloud 
 2.	Node JS
 3.  Python
-4.  Database(SQL/ NoSQL)
+4.  Database(NoSQL)
 
 
 
