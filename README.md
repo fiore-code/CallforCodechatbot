@@ -77,9 +77,15 @@ Login module is done via OTP. When user tries to login it will ask for the regis
 
 
 The Portal is having two separate modules for Patient and Doctors. 
+
 Some of the key features from the Patient module are:
 1.	Easy connect with verified set of doctors anytime anywhere.
 2.	EMR (Electronic Medical Records) Management facility.
 3.	Can easily share any file, reports, and images with Doctors for assistance.
 4.	Analytics dashboard comprising of various health statistics.
 5.	List of available doctors at a go.
+
+Some of the key features from the Doctor module are:
+1.	Doctor needs to verify themselves in “complete your profile” section by providing his/her credentials as Registration Number and all. 
+2.	Doctors can easily connect with their patients whoever is willing to share their reports with them seeking their help during this crisis time.
+
