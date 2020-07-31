@@ -3,7 +3,11 @@ The COVID-19, also known as the coronavirus, is an ongoing pandemic of coronavir
 
 ![image](https://user-images.githubusercontent.com/29679357/89035306-554e5080-d358-11ea-9f47-dbe6d15a209c.png)
 
+## Authors
 
+1.  [Sanchari Roy](https://github.com/sanchariroy20)(Cognizant)
+2.  [Subham Biswas](https://github.com/fiore-code)(Cognizant)
+3.  [Bitan Bhowmick](https://github.com/BitanBhowmick)(Cognizant)
 
 ## Installation
 
@@ -88,4 +92,7 @@ Some of the key features from the Patient module are:
 Some of the key features from the Doctor module are:
 1.	Doctor needs to verify themselves in “complete your profile” section by providing his/her credentials as Registration Number and all. 
 2.	Doctors can easily connect with their patients whoever is willing to share their reports with them seeking their help during this crisis time.
+
+## Documents
+[Call for Code 2020 Hackathon_v1.0.docx](https://github.com/fiore-code/CallforCodechatbot/files/5007909/Call.for.Code.2020.Hackathon_v1.0.docx)
 
