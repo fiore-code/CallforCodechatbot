@@ -27,3 +27,12 @@ Chatbots are perfect for when users are appearing on any kind of website for loc
 8.  Connect with the doctor by sitting at your home.
 
 
+
+##Technology Stack
+1.  IBM Cloud 
+2.	Node JS
+3.  Python
+4.  Database(SQL/ NoSQL)
+
+
+
