@@ -93,6 +93,16 @@ Some of the key features from the Doctor module are:
 1.	Doctor needs to verify themselves in “complete your profile” section by providing his/her credentials as Registration Number and all. 
 2.	Doctors can easily connect with their patients whoever is willing to share their reports with them seeking their help during this crisis time.
 
+## IBM Services
+1.  Watson Assistant
+2.  Discovery Services
+3.  Functions
+4.  Visual Recognition
+5.  Actions
+6.  APIs
+7.  Cloud Foundry
+8.  Toolchain
+
 ## Documents
 [Call for Code 2020 Hackathon_v1.0.docx](https://github.com/fiore-code/CallforCodechatbot/files/5007909/Call.for.Code.2020.Hackathon_v1.0.docx)
 
