@@ -4,6 +4,7 @@ The COVID-19, also known as the coronavirus, is an ongoing pandemic of coronavir
 ![image](https://user-images.githubusercontent.com/29679357/89035306-554e5080-d358-11ea-9f47-dbe6d15a209c.png)
 
 
+
 ## Installation
 
 Clone the git repository and use the corresponding commands:
@@ -13,16 +14,7 @@ npm install
 npm start
 ```
 
-##Objectives
+## Features
 
-Chatbots are perfect for when users are appearing on any kind of website for location based information or generic COVID-19 related information. Especially since they cannot wait to talk to real person, this information is crucial to be received right away 24/7. They are asking questions like:
-•	What is the number cases in a specific area
-•	What is the lockdown situation
-•	Where can I get a test done or nearby medical facility?
-•	What are the symptoms
-•	How does the virus spread?
-•	Support systems can range from financial consulting to mental health counseling
-•	ML algorithms for prediction of COVID for False Positive or False Negative cases.
-•	Connect with the doctor by sitting at your home.
-
+The project includes a lot of features one which are:
 
