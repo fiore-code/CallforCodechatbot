@@ -17,13 +17,13 @@ npm start
 ## Objectives
 
 Chatbots are perfect for when users are appearing on any kind of website for location based information or generic COVID-19 related information. Especially since they cannot wait to talk to real person, this information is crucial to be received right away 24/7. They are asking questions like:
-..*	What is the number cases in a specific area
-..*What is the lockdown situation
-•	Where can I get a test done or nearby medical facility?
-•	What are the symptoms
-•	How does the virus spread?
-•	Support systems can range from financial consulting to mental health counseling
-•	ML algorithms for prediction of COVID for False Positive or False Negative cases.
-•	Connect with the doctor by sitting at your home.
+1.  What is the number cases in a specific area
+2.  What is the lockdown situation
+3.  Where can I get a test done or nearby medical facility?
+4.  What are the symptoms
+5.  How does the virus spread?
+6.  Support systems can range from financial consulting to mental health counseling
+7.	ML algorithms for prediction of COVID for False Positive or False Negative cases.
+8.  Connect with the doctor by sitting at your home.
 
 
