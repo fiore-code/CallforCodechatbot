@@ -39,7 +39,7 @@ Chatbots are perfect for when users are appearing on any kind of website for loc
 ![solution architecture](https://user-images.githubusercontent.com/29679357/89049610-28f1fe80-d36f-11ea-9bbf-03975c23049b.png)
 
 ## Video
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/=L0uRhHbRSMs/0.jpg)](https://www.youtube.com/watch?v==L0uRhHbRSMs)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/L0uRhHbRSMs/0.jpg)](https://www.youtube.com/watch?v==L0uRhHbRSMs)
 
 ## Features
 
